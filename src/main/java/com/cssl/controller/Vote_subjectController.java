@@ -18,7 +18,7 @@ public class Vote_subjectController {
       String name="123";
       Double unt=1.123;
       String nnn="3330";
-      String nnnn="测试github第一次修改1";
+      String nnnn="测试github第一次修改123";
 
 
     }

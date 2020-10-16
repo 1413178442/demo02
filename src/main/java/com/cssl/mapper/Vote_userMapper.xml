@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.mapper.Vote_userMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cssl.entity.Vote_user">
+        <id column="vu_user_id" property="vu_user_id" />
+        <result column="vu_user_name" property="vu_user_name" />
+        <result column="vu_password" property="vu_password" />
+        <result column="vu_status" property="vu_status" />
+    </resultMap>
+
+    <select id="voteuser" resultType="Vote_user" parameterType="Vote_user">
+      select * from vote_user where vu_user_name=#{vu_user_name} and vu_password=#{vu_password}
+    </select>
+
+    <insert id="adduser" parameterType="Vote_user">
+        INSERT INTO `vote_user` (`vu_user_name`,`vu_password`,`vu_status`)VALUES(#{vu_user_name},#{vu_password},'2');
+
+    </insert>
+
+    <select id="showuser" parameterType="String" resultType="Vote_user">
+        SELECT * FROM vote_user WHERE vu_user_name=#{name}
+</select>
+
+</mapper>

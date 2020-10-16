@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.mapper.Vote_itemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cssl.entity.Vote_item">
+        <id column="vi_id" property="vi_id" />
+        <result column="vu_user_id" property="vu_user_id" />
+        <result column="vs_id" property="vs_id" />
+        <result column="vo_id" property="vo_id" />
+    </resultMap>
+    <select id="voteitem" resultType="Vote_item" parameterType="map">
+        SELECT * FROM vote_item WHERE vu_user_id=#{vuid} AND vs_id=#{vsid}
+
+    </select>
+
+    <insert id="voteadd" parameterType="Vote_item">
+        INSERT INTO `vote_item` (`vu_user_id`, `vs_id`,`vo_id`)VALUES(#{vu_user_id}, #{vs_id}, #{vo_id});
+</insert>
+
+</mapper>

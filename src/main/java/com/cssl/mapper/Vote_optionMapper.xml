@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.mapper.Vote_optionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cssl.entity.Vote_option">
+        <id column="vo_id" property="vo_id" />
+        <result column="vs_id" property="vs_id" />
+        <result column="vo_option" property="vo_option" />
+        <result column="vo_order" property="vo_order" />
+    </resultMap>
+
+    <select id="optionmap" resultType="map" parameterType="Integer">
+      SELECT COUNT(0) AS 'cou',SUM(vo_order)AS 'sum' FROM vote_option WHERE vs_id=#{vsid}
+
+    </select>
+
+    <select id="optionlist" resultType="Vote_option" parameterType="Integer">
+        SELECT * FROM vote_option WHERE vs_id=#{vsid}
+
+    </select>
+
+    <select id="subject" parameterType="Integer" resultType="Vote_subject">
+        SELECT * FROM vote_subject WHERE vs_id=#{vsid}
+    </select>
+
+</mapper>

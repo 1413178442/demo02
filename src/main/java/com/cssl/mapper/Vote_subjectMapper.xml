@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.mapper.Vote_subjectMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cssl.entity.Vote_subject">
+        <id column="vs_id" property="vs_id" />
+        <result column="vs_title" property="vs_title" />
+        <result column="vs_type" property="vs_type" />
+    </resultMap>
+
+    <select id="subjectlist" resultType="Vote_subject">
+        SELECT s.vs_id,s.vs_title,COUNT(DISTINCT o.vo_id) AS 'options',COUNT(DISTINCT i.vi_id) AS 'total'
+        FROM vote_subject s
+                 LEFT JOIN vote_option o ON s.vs_id=o.vs_id
+                 LEFT JOIN vote_item i ON s.vs_id=i.vs_id
+        GROUP BY s.vs_id,s.vs_title;
+    </select>
+
+</mapper>
